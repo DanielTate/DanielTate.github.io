@@ -1,24 +1,24 @@
-name: deploy
+name: Build and Deploy 
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@main
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-            - name: Build and Deploy
-              uses: ./.github/actions/deploy
-              env:
-                  COMMIT_EMAIL: dan@tate.nz
-                  COMMIT_NAME: dan
-                  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-                  BASE_BRANCH: main
-                  DEPLOY_BRANCH: gh-pages
-                  BUILD_SCRIPT: npm && npm build
-                  FOLDER: build
+      - name: Install and Build
+      - run: |
+        npm install
+        npm run build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: dist

@@ -1,7 +1,7 @@
+const fs = require('../../src/filesystem/fs').default
 const set_ids = require('../../src/filesystem/set_ids').default
 const set_paths = require('../../src/filesystem/set_paths').default
 const get_by_path = require('../../src/filesystem/get_by_path').default
-const fs = require('../../src/filesystem/fs').default
 
 let FS = set_ids(fs, fs)
 FS = set_paths(FS)

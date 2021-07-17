@@ -1,8 +1,10 @@
 <template>
 <div class="window">
+    <!--
     <div class="decorations">
         <button>close</button>
     </div>
+    -->
     <div class="application">
         <slot />
     </div>

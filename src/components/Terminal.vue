@@ -11,9 +11,11 @@
 </template>
 
 <script>
-import { get_by_id, get_by_path } from '@/filesystem'
+import get_by_id from '@/filesystem/get_by_id'
+import get_by_path from '@/filesystem/get_by_path'
 import argparse from '@/methods/argparse'
 import cat from '@/commands/cat'
+import cd from '@/commands/cd'
 
 export default {
     data() {
@@ -25,7 +27,7 @@ export default {
             commands: ['clear', 'help', 'ls', 'cd', 'cat'],
             user: 'guest',
             host: 'website',
-            pwd: '/home/dan'
+            pwd: 'root/home/dan'
         } 
     },
     computed: {
@@ -82,10 +84,20 @@ export default {
             const names = dir.children.map( child => (child.name)).join(' ')
             this.output(names)
         },
-        cd() {
-            // Todo
-            // console.log('Change directory')
-            // this.value = ''
+        cd(dir, args, opts) {
+
+            let result = dir.find(({name}) => name === args[0])
+
+            if(!result) {
+                try {
+                    result = cd(this.$store.state.fs, args[0])
+                    this.pwd = result.path
+                } catch (e) {
+                    this.output(e.message)
+                }
+            } else {
+                this.pwd = result.path
+            }
         },
         cat,
     }

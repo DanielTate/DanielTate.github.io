@@ -25,6 +25,7 @@ export default {
             commandHistory: [],
             history: [],
             commands: ['clear', 'help', 'ls', 'cd', 'cat'],
+            applications: ['Terminal'],
             user: 'guest',
             host: 'website',
             pwd: 'root/home/dan'
@@ -59,9 +60,14 @@ export default {
 
             if(this.commands.indexOf(command) > -1) {
                 response = this[command](this.dir.children, args, opts)
+                this.output(response)
             }
 
-            this.output(response)
+            if(this.applications.indexOf(command) > -1) {
+                this.$bus.emit('launch', command)
+            }
+
+            // this.output(response)
         },
         output(value) {
             this.history.push(value)

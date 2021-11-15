@@ -1,6 +1,6 @@
 <template>
-    <Window v-for="app in windows">
-        <component :is="app"></component>
+    <Window :id="app.id" v-for="app in windows">
+        <component id="app.id" :is="app.application"></component>
     </Window>
 </template>
 
@@ -16,10 +16,26 @@ export default {
         }
     },
     mounted() {
-        this.windows.push(Terminal)
+        this.launch(Terminal)
         this.$bus.on('launch', (data) => {
-            this.windows.push(data)
+            // Probably should do a check if this application exists here
+            this.launch(data)
         })
+
+        this.$bus.on('close', (id) => {
+            const index = this.windows.findIndex(app => app.id === id)
+            if(index > -1) {
+                this.windows.splice(index, 1)
+            }
+        })
+    },
+    methods: {
+        launch(application) {
+            this.windows.push({
+                id: this.windows.length,
+                application
+            })
+        }
     }
 }
 

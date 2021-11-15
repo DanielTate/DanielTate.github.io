@@ -1,10 +1,8 @@
 <template>
 <div class="window">
-    <!--
     <div class="decorations">
-        <button>close</button>
+        <button @click="close">close</button>
     </div>
-    -->
     <div class="application">
         <slot />
     </div>
@@ -12,12 +10,21 @@
 </template>
 
 <script>
+import { toRaw } from 'vue';
 export default {
+    props: {
+        id: String
+    },
     data() {
         return {
             commands: ['close']
-        } 
+        }
     },
+    methods: {
+        close() {
+            this.$bus.emit('close', this.id)
+        }
+    }
 }
 </script>
 

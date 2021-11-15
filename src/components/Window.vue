@@ -1,6 +1,6 @@
 <template>
 <div class="window">
-    <div class="decorations">
+    <div v-if="decorations" class="decorations">
         <button @click="close">close</button>
     </div>
     <div class="application">
@@ -13,7 +13,8 @@
 import { toRaw } from 'vue';
 export default {
     props: {
-        id: String
+        id: String,
+        decorations: Boolean
     },
     data() {
         return {

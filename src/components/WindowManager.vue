@@ -1,5 +1,5 @@
 <template>
-    <Window :id="app.id" v-for="app in windows">
+    <Window :id="app.id" :decorations="app.decorations" v-for="app in windows">
         <component id="app.id" :is="app.application"></component>
     </Window>
 </template>
@@ -16,10 +16,10 @@ export default {
         }
     },
     mounted() {
-        this.launch(Terminal)
-        this.$bus.on('launch', (data) => {
+        this.launch({ application: Terminal })
+        this.$bus.on('launch', (application) => {
             // Probably should do a check if this application exists here
-            this.launch(data)
+            this.launch({ application, decorations: true })
         })
 
         this.$bus.on('close', (id) => {
@@ -30,10 +30,11 @@ export default {
         })
     },
     methods: {
-        launch(application) {
+        launch({ application, decorations }) {
             this.windows.push({
                 id: this.windows.length,
-                application
+                application,
+                decorations,
             })
         }
     }

@@ -1,5 +1,5 @@
 <template>
-<div class="window">
+<div :class="`window ${classList}`" >
     <div v-if="decorations" class="decorations">
         <button @click="close">close</button>
     </div>
@@ -14,9 +14,12 @@ import { toRaw } from 'vue';
 export default {
     props: {
         id: String,
+        classList: String,
         decorations: Boolean
     },
     data() {
+        console.log(this.id)
+        console.log(this.classList)
         return {
             commands: ['close']
         }
@@ -30,20 +33,40 @@ export default {
 </script>
 
 <style scoped>
+
 .window {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
+    background-color: white;
     width: 100%;
 }
+
 .decorations {
     background: #414141;
     padding: 5px 20px;
 }
+
 .application {
     display: flex;
     width: 100%;
     box-sizing: border-box;
-    padding: 20px;
     flex-grow: 1;
 }
+
+.tty1 {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.desktop {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
 </style>

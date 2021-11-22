@@ -1,12 +1,13 @@
 <template>
-    <Window :id="app.id" :decorations="app.decorations" v-for="app in windows">
-        <component id="app.id" :is="app.application"></component>
+    <Window :id="app.id" :decorations="app.decorations" :classList="app.classList" v-for="app in windows">
+        <component :id="app.id" :is="app.application"></component>
     </Window>
 </template>
 
 <script>
 import Window from '@/components/Window.vue'
 import Terminal from '@/components/Terminal.vue'
+import Desktop from '@/components/Desktop.vue'
 
 export default {
     components: { Window, Terminal },
@@ -16,7 +17,9 @@ export default {
         }
     },
     mounted() {
-        this.launch({ application: Terminal })
+        this.launch({ application: Terminal, classList: 'tty1' })
+        this.launch({ application: Desktop, classList: 'desktop' })
+
         this.$bus.on('launch', (application) => {
             // Probably should do a check if this application exists here
             this.launch({ application, decorations: true })
@@ -30,11 +33,12 @@ export default {
         })
     },
     methods: {
-        launch({ application, decorations }) {
+        launch({ application, decorations, classList }) {
             this.windows.push({
                 id: this.windows.length,
                 application,
                 decorations,
+                classList,
             })
         }
     }

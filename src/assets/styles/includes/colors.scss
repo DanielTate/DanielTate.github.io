@@ -1,0 +1,13 @@
+
+:root {
+    --color-white: #F7FFF7;
+    --color-red: #FF6B6B;
+    --color-green: #4B7F52;
+    --color-dark: #292F36;
+    --color-yellow: #FFE66D;
+
+    --switch-color-background: var(--color-red);
+    --switch-color-active: var(--color-green);
+    --switch-color-toggle: var(--color-white);
+    --switch-radius: var(--switch-width);
+}

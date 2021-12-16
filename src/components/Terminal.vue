@@ -21,6 +21,8 @@ export default {
     data() {
 
         return {
+            name: 'Terminal',
+            icon: 'https://via.placeholder.com/128x128',
             value: '',
             commandHistory: [],
             history: [],
@@ -28,15 +30,15 @@ export default {
             applications: ['Terminal'],
             user: 'guest',
             host: 'website',
-            pwd: 'root/home/dan'
-        } 
+            cwd: 'root/home/dan',
+        }
     },
     computed: {
         dir() {
-            return get_by_path(this.$store.state.fs, this.pwd)
+            return get_by_path(this.$store.state.fs, this.cwd)
         },
         prompt() {
-            return `<span class="user">${this.user}</span>@<span class="hostname">${this.host}</span><span class="cwd">${this.pwd}</span><span>$</span>`
+            return `<span class="user">${this.user}</span>@<span class="hostname">${this.host}</span><span class="cwd">${this.cwd}</span><span>$</span>`
         }
     },
     mounted() {
@@ -123,6 +125,7 @@ export default {
 
     .terminal {
         width: 100%;
+        padding: var(--spacing);
     }
 
     .input {

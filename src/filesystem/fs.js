@@ -39,8 +39,14 @@ export default {
                                 </ul>
                                 <p>Desktop</p>
                                 <ul>
-                                    <li>Double click should launch application</li>
                                     <li>Settings application</li>
+                                    <li>Double click should launch application</li>
+                                </ul>
+                                <p>Other</p>
+                                <ul>
+                                    <li>Need to implement some kind of global css for styles.</li>
+                                    <li>Need a helper to parse css variables into javascript for various components.</li>
+                                    <li>Read markdown files into content fields for Terminal pages.</li>
                                 </ul>
                             `
                         }

@@ -2,9 +2,9 @@
 <template>
     <div class="desktop">
         <div class="desktop-icons">
-            <div v-for="icon in icons" class="icon" @click="launch(icon.application)">
-                <img :src="icon.image" />
-                <p>{{ icon.name }}</p>
+            <div v-for="app in applications" class="icon" @click="() => launch(app)">
+                <img :src="app.data().icon" />
+                <p>{{ app.data().name }}</p>
             </div>
         </div>
     </div>
@@ -12,23 +12,24 @@
 
 <script>
 import Terminal from '@/components/Terminal.vue'
+import Settings from '@/components/Settings.vue'
 
 export default {
-    components: { Terminal },
+    components: {
+        Terminal,
+        Settings
+    },
     data() {
         return {
-            icons: [
-                {
-                    application: Terminal,
-                    image: 'https://via.placeholder.com/128x128',
-                    name: 'Terminal'
-                }
+            applications: [
+                Terminal,
+                Settings
             ]
         }
     },
     methods: {
-        launch(application) {
-            this.$bus.emit('launch', 'Terminal')
+        launch(app) {
+            this.$bus.emit('launch', app)
         }
     }
 }

@@ -9,7 +9,25 @@ FS = set_paths(FS)
 const store = createStore({
     state() {
         return {
-            fs: FS 
+            fs: FS,
+            config: {
+                window: {
+                    decorations: {
+                        labels: true,
+                        close: {
+                            style: {
+                                background: 'var(--color-red)',
+                                color: 'var(--color-white)'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    mutations: {
+        toggleWindowDecorationLabels(state) {
+            state.config.window.decorations.labels = !state.config.window.decorations.labels
         }
     }
 })

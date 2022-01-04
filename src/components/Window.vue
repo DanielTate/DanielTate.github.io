@@ -51,6 +51,7 @@ export default {
     flex-direction: column;
     background-color: white;
     width: 100%;
+    height: 100%;
 }
 
 .decorations {
@@ -61,6 +62,7 @@ export default {
 .application {
     display: flex;
     width: 100%;
+    height: 100%;
     box-sizing: border-box;
     flex-grow: 1;
 }

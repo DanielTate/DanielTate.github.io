@@ -45,6 +45,8 @@ export default {
 
     .desktop-icons {
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         flex-wrap: wrap;
     }
 

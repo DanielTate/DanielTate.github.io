@@ -27,7 +27,7 @@ export default {
 
         this.$bus.on('launch', (application) => {
             // Probably should do a check if this application exists here
-            this.launch({ application, decorations: true, classList: application.name })
+            this.launch({ application, decorations: true, classList: application.data().name })
         })
 
         this.$bus.on('close', (id) => {

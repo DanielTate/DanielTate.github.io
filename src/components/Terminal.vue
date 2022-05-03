@@ -17,12 +17,14 @@ import argparse from '@/methods/argparse'
 import cat from '@/commands/cat'
 import cd from '@/commands/cd'
 
+import PNGterminal from '/src/assets/images/terminal.png'
+
 export default {
     data() {
 
         return {
             name: 'Terminal',
-            icon: 'https://via.placeholder.com/128x128',
+            icon: PNGterminal,
             value: '',
             commandHistory: [],
             history: [],

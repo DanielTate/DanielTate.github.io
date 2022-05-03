@@ -4,10 +4,22 @@
             <p class="section-title">Window decorations</p>
             <div class="section-area">
                 <Toggle
-                    id="test"
+                    id="decorations"
                     :checked="$store.state.config.window.decorations.labels"
                     label="Enable window decoration labels"
                     :action="toggleWindowDecorationLabels"
+                >
+                </Toggle>
+            </div>
+        </section>
+        <section class="section">
+            <p class="section-title">Show tcon titles</p>
+            <div class="section-area">
+                <Toggle
+                    id="titles"
+                    :checked="$store.state.config.icon.titles"
+                    label="Show icon titles"
+                    :action="toggleIconTitles"
                 >
                 </Toggle>
             </div>
@@ -27,6 +39,9 @@ export default {
     methods: {
         toggleWindowDecorationLabels() {
             this.$store.commit('toggleWindowDecorationLabels')
+        },
+        toggleIconTitles() {
+            this.$store.commit('toggleIconTitles')
         }
     }
 }

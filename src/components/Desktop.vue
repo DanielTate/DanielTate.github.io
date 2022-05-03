@@ -68,7 +68,7 @@ export default {
     }
 
     .icon:hover img {
-        border: 1px solid blue;
+        filter: drop-shadow(0px 0px 1px blue);
     }
 
     .icon:hover p {
